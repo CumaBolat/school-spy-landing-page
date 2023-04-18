@@ -1,0 +1,87 @@
+<head>
+  <meta charset="utf-8">
+  <title><%= current_page?(teacher_signin_path) ? 'Teacher Signin Form' : 'Parent Signin Form' %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffd1dc;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #666;
+    }
+    
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      font-size: 16px;
+      background-color: #f8f8f8;
+    }
+    
+    input[type="submit"] {
+      background-color: #2979ff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <% if current_page?(teacher_signin_path)%>
+    <h1>Teacher Signin Form</h1>
+    <form action="#" method="post">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="password_confirmation">Confirm Password:</label>
+      <input type="password" id="password_confirmation" name="password_confirmation" required>
+
+      <input type="submit" value="Signin">
+    </form>
+  <% else %>
+    <h1>Parent Signin Form</h1>
+    <form action="#" method="post">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="password_confirmation">Confirm Password:</label>
+      <input type="password" id="password_confirmation" name="password_confirmation" required>
+
+      <input type="submit" value="Signin">
+    </form>
+  <% end %>
+</body>

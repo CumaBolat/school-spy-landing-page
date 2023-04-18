@@ -1,0 +1,90 @@
+<head>
+  <style>
+    body {
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .outer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .inner {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 50px;
+      max-width: 600px;
+    }
+    .parent-signin {
+      background-color: #2979ff;
+      color: #fff;
+      font-size: 24px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 20px 50px;
+      border-radius: 10px;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    .parent-signin:hover {
+      background-color: #1c54b2;
+    }
+    .parent-signup {
+      background-color: #f50057;
+      color: #fff;
+      font-size: 24px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 20px 50px;
+      border-radius: 10px;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    .parent-signup:hover {
+      background-color: #c51162;
+    }
+    .teacher-signup {
+      background-color: #00c853;
+      color: #fff;
+      font-size: 24px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 20px 50px;
+      border-radius: 10px;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    .teacher-signup:hover {
+      background-color: #007e3a;
+    }
+    .teacher-signin {
+      background-color: #fdd835;
+      color: #fff;
+      font-size: 24px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 20px 50px;
+      border-radius: 10px;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    .teacher-signin:hover {
+      background-color: #c6a700;
+    }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="inner">
+      <%= button_to "Parent Signin", parent_signin_path, :method => :get, class: "parent-signin" %>
+
+      <%= button_to "Parent Signup", parent_signup_path, :method => :get, class: "parent-signup" %>
+
+      <%= button_to "Teacher Signup", teacher_signup_path, :method => :get, class: "teacher-signup" %>
+
+      <%= button_to "Teacher Signin", teacher_signin_path, :method => :get, class: "teacher-signin" %>
+    </div>
+  </div>
+</body>
