@@ -1,12 +1,9 @@
 class ParentController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-
   def parent_signin
-    return render json: { :text => "Password and password confirmation are not equals", 
-                          :status => 400 
-                        } if !is_confirmation_equals_password(parent_signin_params[:password], 
-                                                                parent_signin_params[:password_confirmation])
+    check_password_confirmation(parent_signin_params[:password], parent_signin_params[:password_confirmation])
+
     response = signin_respone('parent', parent_signin_params)
 
     if response.code == '200'
@@ -22,6 +19,22 @@ class ParentController < ApplicationController
   end
 
   def parent_signup
+    check_password_confirmation(parent_signup_params[:password], parent_signup_params[:password_confirmation])
+
+    reponse = signup_respone('3001/parent_create', parent_signup_params)
+
+    if response.code == '200'
+      # API call was successful, so proceed with your app logic
+      console.log(response.body)
+
+      render json: { :text => "User created successfully" }
+    else
+      # API call returned an error, so handle the error response
+      error_message = JSON.parse(response.body)['error']
+      render json: {
+                :text => error_message, 
+                :status => response.code }
+    end
   end
 
   private
@@ -31,6 +44,21 @@ class ParentController < ApplicationController
   end
 
   def parent_signup_params
-    params.require(:parent).permit(:name, :email, :password, :password_confirmation)
+    params.require(:parent).permit(:name,
+                                    :surname,
+                                    :child_name,
+                                    :email,
+                                    :phone_number,
+                                    :password,
+                                    :password_confirmation,
+                                    :social_id,
+                                    :parent_job,
+                                    :parent_age,
+                                    :child_age,
+                                    :child_grade
+                                    :child_school_id,
+                                    :is_only_child,
+                                    :school_name
+                                    )
   end
 end

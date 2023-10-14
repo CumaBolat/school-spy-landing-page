@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
   <head>
     <title>Parent Signup</title>
     <style>
@@ -12,12 +10,12 @@
 
       h1 {
         color: #fff;
-        font-size: 3rem;
-        margin-top: 3rem;
+        font-size: 2rem;
+        margin-top: 2rem;
       }
 
       form {
-        margin: 3rem auto;
+        margin: 2rem auto;
         padding: 2rem;
         max-width: 800px;
         background-color: #fff;
@@ -36,12 +34,14 @@
       input[type="text"],
       input[type="email"],
       input[type="tel"],
-      input[type="number"] {
+      input[type="number"],
+      input[type="password"],
+      select {
         width: 100%;
-        font-size: 20px;
-        padding: 0.5rem;
-        margin-top: 0.3rem;
-        margin-bottom: 0.3rem;
+        font-size: 15px;
+        padding: 0.2rem;
+        margin-top: 1px;
+        margin-bottom: 1px;
         border: 1px solid #ddd;
         border-radius: 0.5rem;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -80,6 +80,12 @@
       <%= f.label :surname, "Surname" %>
       <%= f.text_field :surname %>
 
+      <%= f.label :password, "Password"%>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Password Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
       <%= f.label :child_name, "Child's Name" %>
       <%= f.text_field :child_name %>
 
@@ -107,8 +113,10 @@
       <%= f.label :child_school_id, "Child School ID" %>
       <%= f.number_field :child_school_id %>
 
+      <%= f.label :school_name, "School Name" %>
+      <%= f.select :school_name, options_for_select(get_all_schools()),{include_blank: true}, {class: "form-control" } %>
+
       <%= f.submit "Sign up" %>
     <% end %>
 
   </body>
-</html>

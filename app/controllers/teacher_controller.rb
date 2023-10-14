@@ -2,10 +2,7 @@ class TeacherController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def teacher_signin
-    return render json: { :text => "Password and password confirmation are not equals", 
-                          :status => 400 
-                        } if !is_confirmation_equals_password?(teacher_signin_params[:password], 
-                                                                teacher_signin_params[:password_confirmation])
+    check_password_confirmation(teacher_signin_params[:password], teacher_signin_params[:password_confirmation])
 
     response = signin_respone('teacher', teacher_signin_params)
 
@@ -23,6 +20,22 @@ class TeacherController < ApplicationController
   end
 
   def teacher_signup
+    check_password_confirmation(teacher_signup_params[:password], teacher_signup_params[:password_confirmation])
+
+    response = signup_respone('3001/teacher_create', teacher_signup_params)
+
+    if response.code == '200'
+      # API call was successful, so proceed with your app logic
+      console.log(response.body)
+
+      render json: { :text => "User created successfully" }
+    else
+      # API call returned an error, so handle the error response
+      error_message = JSON.parse(response.body)['error']
+      render json: {
+                :text => error_message, 
+                :status => response.code }
+    end
   end
 
   private
@@ -32,6 +45,15 @@ class TeacherController < ApplicationController
   end
 
   def teacher_signup_params
-    params.require(:teacher).permit(:email, :password, :password_confirmation)
+    params.require(:teacher).permit(:name,
+                                      :surname,
+                                      :email, 
+                                      :password,
+                                      :password_confirmation,
+                                      :phone_number,
+                                      :age,
+                                      :school_id,
+                                      :description
+                                      )
   end
 end

@@ -1,0 +1,108 @@
+  <head>
+    <title>Teacher Signup</title>
+    <style>
+      body {
+        background-color: #f6d365;
+        background-image: linear-gradient(to right, #a1c4fd, #c2e9fb);
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      h1 {
+        color: #fff;
+        font-size: 2rem;
+        margin-top: 2rem;
+      }
+
+      form {
+        margin: 2rem auto;
+        padding: 2rem;
+        max-width: 800px;
+        background-color: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 0 50px rgba(0, 123, 234, 1);
+      }
+
+      label {
+        display: inline-block;
+        font-size: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #444;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="number"],
+      input[type="password"],
+      textarea,
+      select {
+        width: 100%;
+        font-size: 15px;
+        padding: 0.2rem;
+        margin-top: 1px;
+        margin-bottom: 1px;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="submit"] {
+        background-color: darkblue;
+        color: #fff;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 1rem;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #ff4d4d;
+      }
+
+      .error {
+        color: #f00;
+        margin-top: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Teacher Signup</h1>
+
+    <%= form_for :Teacher do |f| %>
+      <%= f.label :name, "Name"%>
+      <%= f.text_field :name %>
+
+      <%= f.label :surname, "Surname" %>
+      <%= f.text_field :surname %>
+
+      <%= f.label :password, "Password"%>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Password Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.label :email, "Email" %>
+      <%= f.email_field :email %>
+
+      <%= f.label :phone_number, "Phone Number"%>
+      <%= f.phone_field :phone_number %>
+
+      <%= f.label :age, "Age"%>
+      <%= f.number_field :age%>
+
+      <%= f.label :school_id, "School Name" %>
+      <%= f.select :school_id, options_for_select(get_all_schools()),{include_blank: true}, {class: "form-control" } %>
+
+      <%= f.label :description, "Description"%>
+      <%= f.text_area :description %>
+
+      <%= f.submit "Sign up" %>
+    <% end %>
+
+  </body>
