@@ -21,5 +21,4 @@ Rails.application.routes.draw do
   post '/teacher_signup', to: 'teacher#teacher_signup'
 
   post '/teacher_signin', to: 'teacher#teacher_signin'
-
 end
