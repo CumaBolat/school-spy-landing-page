@@ -74,7 +74,7 @@
   <body>
     <h1>Teacher Signup</h1>
 
-    <%= form_for :Teacher do |f| %>
+    <%= form_with url: teacher_signup_path, method: :post do |f| %>
       <%= f.label :name, "Name"%>
       <%= f.text_field :name %>
 
@@ -96,8 +96,8 @@
       <%= f.label :age, "Age"%>
       <%= f.number_field :age%>
 
-      <%= f.label :school_id, "School Name" %>
-      <%= f.select :school_id, options_for_select(get_all_schools()),{include_blank: true}, {class: "form-control" } %>
+      <%= f.label :school_name, "School Name" %>
+      <%= f.select :school_name, options_for_select(all_schools()),{include_blank: true}, {class: "form-control" } %>
 
       <%= f.label :description, "Description"%>
       <%= f.text_area :description %>

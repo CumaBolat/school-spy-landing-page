@@ -73,7 +73,7 @@
   <body>
     <h1>Parent Signup</h1>
 
-    <%= form_for :parent do |f| %>
+    <%= form_with url: parent_signup_path, method: :post do |f| %>
       <%= f.label :name, "Name"%>
       <%= f.text_field :name %>
 
@@ -113,8 +113,11 @@
       <%= f.label :child_school_id, "Child School ID" %>
       <%= f.number_field :child_school_id %>
 
+      <%= f.label :teacher_id, "Teacher Name"%>
+      <%= f.select :teacher_id, options_for_select(all_teachers()),{include_blank: true}, {class: "form-control"} %>
+
       <%= f.label :school_name, "School Name" %>
-      <%= f.select :school_name, options_for_select(get_all_schools()),{include_blank: true}, {class: "form-control" } %>
+      <%= f.select :school_name, options_for_select(all_schools()),{include_blank: true}, {class: "form-control"} %>
 
       <%= f.submit "Sign up" %>
     <% end %>

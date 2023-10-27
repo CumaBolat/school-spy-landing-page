@@ -19,13 +19,11 @@ class ParentController < ApplicationController
   end
 
   def parent_signup
-    response = signup_respone('3001/parent_create', parent_signup_params)
+    response = signup_respone('/parent_create', params)
 
     if response.code == '200'
       # API call was successful, so proceed with your app logic
-      console.log(response.body)
-
-      render json: {text: 'User created successfully'}
+      redirect_to "http://localhost:3002/parent_dashboard/#{JSON.parse(response.body)['id']}"
     else
       # API call returned an error, so handle the error response
       error_message = JSON.parse(response.body)['error']
@@ -39,25 +37,7 @@ class ParentController < ApplicationController
   private
 
   def parent_signin_params
-    params.require(:parent).permit(:email, :password, :password_confirmation)
-  end
-
-  def parent_signup_params
-    params.require(:parent).permit(:name,
-                                   :surname,
-                                   :child_name,
-                                   :email,
-                                   :phone_number,
-                                   :password,
-                                   :password_confirmation,
-                                   :social_id,
-                                   :parent_job,
-                                   :parent_age,
-                                   :child_age,
-                                   :child_grade,
-                                   :child_school_id,
-                                   :is_only_child,
-                                   :school_name)
+    params.permit(:email, :password, :password_confirmation)
   end
 
   def validate_password_confirmation

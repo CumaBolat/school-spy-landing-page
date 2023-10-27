@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
   # TODO: The url should be stored in a config file.
+  require 'net/http'
+  require 'uri'
+  require 'json'
+
   def signin_respone(path, params)
     url = URI("http://localhost:3001/#{path}/")
 
@@ -48,8 +52,7 @@ class ApplicationController < ActionController::Base
       'surname' => params[:surname],
       'email' => params[:email],
       'phone_number' => params[:phone_number],
-      'password' => params[:password],
-      'password_confirmation' => params[:password_confirmation]
+      'password' => params[:password]
     }
 
     model_specific_params = %w[child_name
@@ -58,12 +61,12 @@ class ApplicationController < ActionController::Base
                                parent_age
                                child_age
                                child_grade
+                               teacher_id
                                child_school_id
                                is_only_child
                                school_name
                                description
-                               age
-                               school_id]
+                               age]
 
     model_specific_params.each do |param|
       common[param] = params[param] if params.key?(param)
